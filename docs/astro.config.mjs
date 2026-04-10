@@ -5,17 +5,11 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-	// Webflow Cloud handles the /docs mount path automatically via
-	// COSMIC_MOUNT_PATH at build time. Do NOT set `base` here — it
-	// double-prefixes and causes a redirect loop.
+	// Webflow Cloud's build template overrides `base` and ignores
+	// `trailingSlash`/`build.format` in user config. The ERR_TOO_MANY_REDIRECTS
+	// loop is worked around in src/middleware.ts instead — see that file.
 	site: 'https://fidoandpatch.webflow.io',
 	output: 'server',
-	// Webflow's edge strips trailing slashes. Astro's default adds them.
-	// Without 'never' here, the two fight and produce ERR_TOO_MANY_REDIRECTS.
-	trailingSlash: 'never',
-	build: {
-		format: 'file',
-	},
 	adapter: cloudflare({
 		platformProxy: { enabled: true },
 	}),
