@@ -6,6 +6,12 @@
   "main": "@astrojs/cloudflare/entrypoints/server",
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist"
+    "directory": "./dist",
+    // Webflow's classic edge 301-strips trailing slashes. The default
+    // "auto-trailing-slash" here emits a 307 in the opposite direction
+    // (/docs → /docs/), producing ERR_TOO_MANY_REDIRECTS on the root
+    // index. "drop-trailing-slash" matches Webflow's policy: /docs/
+    // redirects to /docs, and /docs serves dist/index.html directly.
+    "html_handling": "drop-trailing-slash"
   }
 }
