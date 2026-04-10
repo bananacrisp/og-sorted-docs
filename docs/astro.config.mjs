@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import cloudflare from '@astrojs/cloudflare';
+import forceNeverTrailingSlash from './integrations/force-trailing-slash.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +15,7 @@ export default defineConfig({
 		platformProxy: { enabled: true },
 	}),
 	integrations: [
+		forceNeverTrailingSlash(),
 		starlight({
 			title: 'OG Sorted',
 			description:
