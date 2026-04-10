@@ -10,6 +10,12 @@ export default defineConfig({
 	// double-prefixes and causes a redirect loop.
 	site: 'https://fidoandpatch.webflow.io',
 	output: 'server',
+	// Webflow's edge strips trailing slashes. Astro's default adds them.
+	// Without 'never' here, the two fight and produce ERR_TOO_MANY_REDIRECTS.
+	trailingSlash: 'never',
+	build: {
+		format: 'file',
+	},
 	adapter: cloudflare({
 		platformProxy: { enabled: true },
 	}),
