@@ -5,10 +5,10 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-	// Webflow Cloud mounts this app at /docs under the Webflow site.
-	// Update `site` once the production Webflow subdomain is known.
-	site: 'https://ogsorted.webflow.io',
-	base: '/docs',
+	// Webflow Cloud handles the /docs mount path automatically via
+	// COSMIC_MOUNT_PATH at build time. Do NOT set `base` here — it
+	// double-prefixes and causes a redirect loop.
+	site: 'https://fidoandpatch.webflow.io',
 	output: 'server',
 	adapter: cloudflare({
 		platformProxy: { enabled: true },
