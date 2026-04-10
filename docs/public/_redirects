@@ -1,0 +1,18 @@
+# Cloudflare Pages/Workers _redirects
+# Status 200 = rewrite (URL stays the same, different file served)
+# This works around Webflow Cloud's trailing-slash redirect loop:
+# classic Webflow strips /docs/ → /docs, then the Astro Cloudflare
+# adapter 307s /docs → /docs/ because the prerendered asset is at
+# /docs/index.html. Rewriting lets us serve the index file without
+# emitting a redirect at all.
+
+/docs                                 /docs/index.html                                200
+/docs/getting-started                 /docs/getting-started/index.html                200
+/docs/privacy                         /docs/privacy/index.html                        200
+/docs/terms                           /docs/terms/index.html                          200
+/docs/troubleshooting                 /docs/troubleshooting/index.html                200
+/docs/features/bulk-apply             /docs/features/bulk-apply/index.html            200
+/docs/features/csv-import-export      /docs/features/csv-import-export/index.html     200
+/docs/features/editing-pages          /docs/features/editing-pages/index.html         200
+/docs/features/page-audit             /docs/features/page-audit/index.html            200
+/docs/features/uploading-images       /docs/features/uploading-images/index.html      200
