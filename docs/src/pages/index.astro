@@ -4,13 +4,8 @@
 // prerendered index.html (/docs → /docs/). The two fight forever.
 //
 // This SSR page replaces the prerendered index so there is no static
-// index.html for the assets layer to match. The redirect runs inside
-// the worker, bypassing the loop entirely.
-//
-// Raw Response avoids Astro's base-prefix logic (Webflow Cloud may
-// inject base: '/docs' at build time — we can't be sure).
-return new Response(null, {
-	status: 302,
-	headers: { Location: '/docs/home' },
-});
+// index.html for the assets layer to match. Astro.rewrite() renders
+// the /home route content internally — the browser stays on /docs and
+// gets a single 200 response.
+return Astro.rewrite('/home');
 ---
