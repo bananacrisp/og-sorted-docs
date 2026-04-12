@@ -4,8 +4,10 @@
 // prerendered index.html (/docs → /docs/). The two fight forever.
 //
 // This SSR page replaces the prerendered index so there is no static
-// index.html for the assets layer to match. Astro.rewrite() renders
-// the /home route content internally — the browser stays on /docs and
-// gets a single 200 response.
-return Astro.rewrite('/docs/home');
+// index.html for the assets layer to match. Redirect to /docs/home
+// where the splash page lives.
+return new Response(null, {
+	status: 302,
+	headers: { Location: '/docs/home' },
+});
 ---
