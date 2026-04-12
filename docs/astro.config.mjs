@@ -36,7 +36,7 @@ export default defineConfig({
 				{
 					label: 'Overview',
 					items: [
-						{ label: 'Home', slug: 'index' },
+						{ label: 'Home', slug: 'home' },
 						{ label: 'Getting started', slug: 'getting-started' },
 					],
 				},
